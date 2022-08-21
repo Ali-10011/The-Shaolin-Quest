@@ -2,8 +2,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
+    private Vector3 viewPos;
     public FixedJoystick FixedJoystick;
-
     private Camera cam;
 
     // Start is called before the first frame update
@@ -13,42 +13,41 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        
     }
 
-    void SpawnCube()
+    private bool Spawn()
     {
-        bool spawned = false;
-        int tries = 0;
-
-        while (!spawned || tries != 10)
+        for (int i = 0; i < 10; i++)
         {
             // A random position in viewport
-            Vector3 viewPortPos = new Vector3(Random.Range(0.1f, 0.4f), Random.Range(0.1f, 0.4f), transform.position.z);
+            Vector3 viewPortPos = new Vector3(Random.Range(0.1f, 0.9f), Random.Range(0.6f, 0.8f), viewPos.z);
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPortPos);
 
-            tries++;
             if (!Physics.CheckSphere(worldPos, 1))
             {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = worldPos;
-                spawned = true;
+                GameObject self = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                self.transform.localScale = transform.localScale;
+                self.transform.position = worldPos;
+                self.AddComponent<Enemy>();
+                return true;
             }
-        }
+        }   
+        return false;
     }
+
     // Update is called once per frame
     // TO DO: Create a better mechanic after finalizing mechanics,
     // Current impl only works for slow character speeds
     void Update()
     {
-        /*if (Input.GetKey(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            SpawnCube();
-        }*/
+            Spawn();
+        }
         // Get Poisition of object relative to camera's viewport Range is bw 0 and 1
         // 0 means extreme left on x axis, 1 means extreme right on x-axis
         // 0 means bottom on y axis, 1 means top on y-axis
-        Vector3 viewPos = cam.WorldToViewportPoint(transform.position);
+        viewPos = cam.WorldToViewportPoint(transform.position);
         
         Debug.Log(FixedJoystick.Horizontal*PlayerSpeed);
         // Only move object when within the given bounds (viewport of the camera)
