@@ -1,15 +1,14 @@
 using UnityEngine;
-using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
+    [SerializeField] private GameObject bulletPrefab = null;
     private Camera cam;
     private Vector3 viewPos;
 
     float timer;
     [SerializeField] int waitingTime = 5;
-    [SerializeField] int bulletSpeed = 25;
 
     private void Awake() 
     {
@@ -20,23 +19,41 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        bullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        bullet.transform.position = transform.position + (-transform.up);
-        Rigidbody b = bullet.AddComponent<Rigidbody>();
-        b.useGravity = false;
-        b.AddForce((player.transform.position - bullet.transform.position) * bulletSpeed);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
+        Bullet _bltScript= bullet.GetComponent<Bullet>();
+        _bltScript.Shoot(player.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > waitingTime)
+        try 
         {
-            Shoot();
-            timer = 0;
+            PlayerMovementMock2 playerScript = player.GetComponent<PlayerMovementMock2>();
+            if (playerScript.isMoving)
+                {
+                    transform.LookAt(player.transform.position);
+                }
+            else 
+            {
+                timer += Time.deltaTime;
+
+                if (timer > waitingTime)
+                {
+                    Shoot();
+                    timer = 0;
+                }
+            }
+        }
+        catch
+        {
+            timer += Time.deltaTime;
+
+                if (timer > waitingTime)
+                {
+                    Shoot();
+                    timer = 0;
+                }
         }
     }
 }

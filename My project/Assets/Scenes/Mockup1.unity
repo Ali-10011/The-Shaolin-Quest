@@ -621,8 +621,8 @@ GameObject:
   - component: {fileID: 2047670916}
   - component: {fileID: 2047670920}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -698,7 +698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047670915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -1.91, z: 0}
+  m_LocalPosition: {x: 0.15, y: -1.917, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,4 +718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 0.1
+  enemyPrefab: {fileID: 2870801241178427928, guid: cfe121470028dd2498d7bcb88ffbb2e8,
+    type: 3}
   FixedJoystick: {fileID: 409798088}

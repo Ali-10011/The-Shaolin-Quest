@@ -1,7 +1,8 @@
 using UnityEngine;
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementMock1 : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
+    [SerializeField] GameObject enemyPrefab;
     private Vector3 viewPos;
     public FixedJoystick FixedJoystick;
     private Camera cam;
@@ -25,10 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!Physics.CheckSphere(worldPos, 1))
             {
-                GameObject self = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                self.transform.localScale = transform.localScale;
-                self.transform.position = worldPos;
-                self.AddComponent<Enemy>();
+                GameObject enemy = Instantiate(enemyPrefab, worldPos, transform.rotation);
                 return true;
             }
         }   
@@ -49,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
         // 0 means bottom on y axis, 1 means top on y-axis
         viewPos = cam.WorldToViewportPoint(transform.position);
         
-        Debug.Log(FixedJoystick.Horizontal*PlayerSpeed);
         // Only move object when within the given bounds (viewport of the camera)
         // To prevent a part of object going out of viewport, a larger/smaller value is chosen
         // instead of 0 and 1.
