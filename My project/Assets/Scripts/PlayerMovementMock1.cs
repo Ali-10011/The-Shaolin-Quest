@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 public class PlayerMovementMock1 : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
@@ -7,13 +9,13 @@ public class PlayerMovementMock1 : MonoBehaviour
     public FixedJoystick FixedJoystick;
     private Camera cam;
 
+    [SerializeField] float spawnAfter = 5f;
     // Start is called before the first frame update
     private void Awake() 
     {
         cam = Camera.main;
-    }
-    void Start()
-    {
+        viewPos = cam.WorldToViewportPoint(transform.position);
+        StartCoroutine(AutoSpawnEnemies());
     }
 
     private bool Spawn()
@@ -33,15 +35,21 @@ public class PlayerMovementMock1 : MonoBehaviour
         return false;
     }
 
+     IEnumerator AutoSpawnEnemies()
+     {
+         while(true) 
+         {
+            Spawn();
+            yield return new WaitForSeconds(spawnAfter);
+         }
+     }
+
     // Update is called once per frame
     // TO DO: Create a better mechanic after finalizing mechanics,
     // Current impl only works for slow character speeds
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Spawn();
-        }
+        
         // Get Poisition of object relative to camera's viewport Range is bw 0 and 1
         // 0 means extreme left on x axis, 1 means extreme right on x-axis
         // 0 means bottom on y axis, 1 means top on y-axis
@@ -50,7 +58,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         // Only move object when within the given bounds (viewport of the camera)
         // To prevent a part of object going out of viewport, a larger/smaller value is chosen
         // instead of 0 and 1.
-        if ((0.07f < viewPos.x && viewPos.x < 0.93f) && (0.07f < viewPos.y && viewPos.y < 0.93f))
+        if ((0.07f < viewPos.x && viewPos.x < 0.93f) && (0.07f < viewPos.y && viewPos.y < 0.53f))
         {
             transform.Translate(translation: new Vector3(x:FixedJoystick.Horizontal*PlayerSpeed,y:FixedJoystick.Vertical*PlayerSpeed,z:0));
         }
@@ -60,7 +68,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         {
             // Clamp back the value between the ranges
             viewPos.x = Mathf.Clamp(viewPos.x, 0.08f, 0.92f);
-            viewPos.y = Mathf.Clamp(viewPos.y, 0.08f, 0.92f);
+            viewPos.y = Mathf.Clamp(viewPos.y, 0.08f, 0.52f);
 
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPos);
 

@@ -4,29 +4,32 @@ public class Enemy : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private GameObject bulletPrefab = null;
-    private Camera cam;
-    private Vector3 viewPos;
-
     float timer;
     [SerializeField] int waitingTime = 5;
+    [SerializeField] int MaxMissedBullets = 3;
+    public int missedBullets = 0;
 
     private void Awake() 
     {
         player = GameObject.FindGameObjectWithTag("Player");   
-        cam = Camera.main;
-        viewPos = cam.WorldToViewportPoint(player.transform.position);
     }
 
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
+        bullet.transform.SetParent(transform);
         Bullet _bltScript= bullet.GetComponent<Bullet>();
+        _bltScript._enemy = this;
         _bltScript.Shoot(player.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (missedBullets > MaxMissedBullets)
+        {
+            Destroy(gameObject);
+        }
         try 
         {
             PlayerMovementMock2 playerScript = player.GetComponent<PlayerMovementMock2>();
