@@ -23,10 +23,10 @@ public class PlayerMovementMock1 : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             // A random position in viewport
-            Vector3 viewPortPos = new Vector3(Random.Range(0.1f, 0.9f), Random.Range(0.6f, 0.8f), viewPos.z);
+            Vector3 viewPortPos = new Vector3(Random.Range(0.1f, 0.9f), Random.Range(0.6f, 0.8f), viewPos.z + 43);
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPortPos);
-
-            if (!Physics.CheckSphere(worldPos, 1))
+            Vector3 collisionCircle = new Vector3(worldPos.x, worldPos.y+5.6f, worldPos.z);
+            if (!Physics.CheckSphere(worldPos, 12))
             {
                 GameObject enemy = Instantiate(enemyPrefab, worldPos, transform.rotation);
                 return true;
@@ -73,7 +73,7 @@ public class PlayerMovementMock1 : MonoBehaviour
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPos);
 
             // Move back smoothly inside the viewport
-            transform.position = Vector3.MoveTowards(current: transform.position, target: new Vector3(worldPos.x, worldPos.y, transform.position.z), maxDistanceDelta: 0.009f);
+            transform.position = Vector3.MoveTowards(current: transform.position, target: new Vector3(worldPos.x, worldPos.y, transform.position.z), maxDistanceDelta: 0.9f);
         }
     }
 }

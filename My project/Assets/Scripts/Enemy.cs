@@ -11,12 +11,13 @@ public class Enemy : MonoBehaviour
 
     private void Awake() 
     {
-        player = GameObject.FindGameObjectWithTag("Player");   
+        player = GameObject.FindGameObjectWithTag("Player");
+        player = player.transform.Find("panda").gameObject;
     }
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, transform.Find("shoot").position, transform.rotation);
         bullet.transform.SetParent(transform);
         Bullet _bltScript= bullet.GetComponent<Bullet>();
         _bltScript._enemy = this;

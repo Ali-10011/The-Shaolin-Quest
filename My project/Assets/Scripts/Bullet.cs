@@ -19,11 +19,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.gameObject.tag.Equals("Pivot"))
-        {
-            Physics.IgnoreCollision(GetComponent<SphereCollider>(), other.collider);
-        }
-
         if (!other.collider.isTrigger)
         {
             Destroy(gameObject);
