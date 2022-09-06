@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3234765367558480358}
   - component: {fileID: 4034878908459475024}
+  - component: {fileID: 815260283700501615}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Pivot
@@ -79,11 +80,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6e2dd6f3725324b9ef39144289b2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2584975012593227034, guid: d221c1143a237444abc1ce741d02938f,
+  bulletPrefab: {fileID: 6804969198777736021, guid: 1a783b5a4ae65824ab532b5e2df7fce1,
     type: 3}
-  waitingTime: 5
+  waitingTime: 3
   MaxMissedBullets: 3
   missedBullets: 0
+--- !u!65 &815260283700501615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022613400426813466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.868834, y: 13.786978, z: 6.401558}
+  m_Center: {x: -0.51856804, y: 6.393489, z: 8.995289}
 --- !u!1 &4317292252622889448
 GameObject:
   m_ObjectHideFlags: 0

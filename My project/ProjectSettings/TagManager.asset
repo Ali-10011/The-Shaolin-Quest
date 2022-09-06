@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pivot
   - Bullet
+  - DeflectedBullet
   layers:
   - Default
   - TransparentFX

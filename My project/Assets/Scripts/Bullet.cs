@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody _rb;
     Camera _cam;
-    int bulletSpeed;
+    [SerializeField] int bulletSpeed;
     public Enemy _enemy;
 
     // Start is called before the first frame update
@@ -14,15 +14,19 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main;
-        bulletSpeed = 40;
+        bulletSpeed = 30;
     }
 
     private void OnCollisionEnter(Collision other) 
     {
-        if (!other.collider.isTrigger)
+        if (other.collider.transform.root.tag.Contains("Player"))
         {
             Destroy(gameObject);
-            PlayerMovementMock2.bulletsList.Remove(gameObject);
+        }
+        else if (!other.collider.isTrigger && !other.collider.tag.Contains("Bullet"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }    
     }
     public void Shoot(Vector3 target)

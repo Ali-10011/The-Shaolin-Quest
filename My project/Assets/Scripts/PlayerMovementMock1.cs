@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovementMock1 : MonoBehaviour
 {
@@ -8,13 +9,17 @@ public class PlayerMovementMock1 : MonoBehaviour
     private Vector3 viewPos;
     public FixedJoystick FixedJoystick;
     private Camera cam;
+    SphereCollider deflectArea;
 
+    public static List<GameObject> bulletsList = new List<GameObject>();
+    public static List<GameObject> bulletsToDelete = new List<GameObject>();
     [SerializeField] float spawnAfter = 5f;
     // Start is called before the first frame update
     private void Awake() 
     {
         cam = Camera.main;
         viewPos = cam.WorldToViewportPoint(transform.position);
+        deflectArea = GetComponent<SphereCollider>();
         StartCoroutine(AutoSpawnEnemies());
     }
 
@@ -44,6 +49,23 @@ public class PlayerMovementMock1 : MonoBehaviour
          }
      }
 
+    public void Deflect()
+    {
+        Collider[] bullets = Physics.OverlapSphere(transform.position, 20f);
+
+        foreach (Collider bullet in bullets)
+        {
+            if (bullet.tag.Equals("Bullet"))
+            {
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                bullet.transform.Find("kunai1").Rotate(180, 0, 0);
+                bullet.transform.Find("kunai2").Rotate(180, 0, 0);
+                rb.velocity = -rb.velocity;
+                bullet.tag = "DeflectedBullet";
+            }
+        }
+    }
+
     // Update is called once per frame
     // TO DO: Create a better mechanic after finalizing mechanics,
     // Current impl only works for slow character speeds
@@ -54,26 +76,21 @@ public class PlayerMovementMock1 : MonoBehaviour
         // 0 means extreme left on x axis, 1 means extreme right on x-axis
         // 0 means bottom on y axis, 1 means top on y-axis
         viewPos = cam.WorldToViewportPoint(transform.position);
-        
+
         // Only move object when within the given bounds (viewport of the camera)
         // To prevent a part of object going out of viewport, a larger/smaller value is chosen
         // instead of 0 and 1.
-        if ((0.07f < viewPos.x && viewPos.x < 0.93f) && (0.07f < viewPos.y && viewPos.y < 0.53f))
+        float xMov = FixedJoystick.Horizontal * PlayerSpeed;
+        float yMov = FixedJoystick.Vertical * PlayerSpeed;
+
+        // Calculate final position in advance before movement
+        Vector3 newPos = transform.position + transform.TransformDirection(new Vector3(FixedJoystick.Horizontal * PlayerSpeed, y: FixedJoystick.Vertical * PlayerSpeed, z: 0));
+        newPos = cam.WorldToViewportPoint(newPos);
+
+        // If final position is inside movement, move, otherwise do not
+        if ((0.07f < newPos.x && newPos.x < 0.93f) && (0.07f < newPos.y && newPos.y < 0.53f))
         {
-            transform.Translate(translation: new Vector3(x:FixedJoystick.Horizontal*PlayerSpeed,y:FixedJoystick.Vertical*PlayerSpeed,z:0));
-        }
-
-        // If not within the bounds of viewport, move it back inside viewport 
-        else 
-        {
-            // Clamp back the value between the ranges
-            viewPos.x = Mathf.Clamp(viewPos.x, 0.08f, 0.92f);
-            viewPos.y = Mathf.Clamp(viewPos.y, 0.08f, 0.52f);
-
-            Vector3 worldPos = cam.ViewportToWorldPoint(viewPos);
-
-            // Move back smoothly inside the viewport
-            transform.position = Vector3.MoveTowards(current: transform.position, target: new Vector3(worldPos.x, worldPos.y, transform.position.z), maxDistanceDelta: 0.9f);
+            transform.Translate(translation: new Vector3(FixedJoystick.Horizontal*PlayerSpeed,y:FixedJoystick.Vertical*PlayerSpeed,z:0));
         }
     }
 }

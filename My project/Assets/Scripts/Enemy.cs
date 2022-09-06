@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
         bullet.transform.SetParent(transform);
         Bullet _bltScript= bullet.GetComponent<Bullet>();
         _bltScript._enemy = this;
+        _bltScript.transform.LookAt(player.transform);
         _bltScript.Shoot(player.transform.position);
     }
 
