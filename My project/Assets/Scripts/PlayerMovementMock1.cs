@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovementMock1 : MonoBehaviour
 {
@@ -11,9 +13,18 @@ public class PlayerMovementMock1 : MonoBehaviour
     private Camera cam;
     SphereCollider deflectArea;
 
+    bool canDeflect;
+    [SerializeField] float deflectCD;
+    [SerializeField] Button defBtn;
+
+    [SerializeField] TextMeshProUGUI timeTxt;
+    [SerializeField] float timeToDisplay;
+
+
     public static List<GameObject> bulletsList = new List<GameObject>();
     public static List<GameObject> bulletsToDelete = new List<GameObject>();
     [SerializeField] float spawnAfter = 5f;
+
     // Start is called before the first frame update
     private void Awake() 
     {
@@ -51,6 +62,12 @@ public class PlayerMovementMock1 : MonoBehaviour
 
     public void Deflect()
     {
+        if (!canDeflect) return;
+
+        canDeflect = false;
+        defBtn.interactable = false;
+        deflectCD = 10;
+
         Collider[] bullets = Physics.OverlapSphere(transform.position, 20f);
 
         foreach (Collider bullet in bullets)
@@ -64,6 +81,19 @@ public class PlayerMovementMock1 : MonoBehaviour
                 bullet.tag = "DeflectedBullet";
             }
         }
+
+
+    }
+
+    void DisplayTime()
+    {
+        if (timeToDisplay < 1)
+            return;
+
+        timeToDisplay -= Time.deltaTime;
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        timeTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     // Update is called once per frame
@@ -71,7 +101,23 @@ public class PlayerMovementMock1 : MonoBehaviour
     // Current impl only works for slow character speeds
     void Update()
     {
-        
+
+        DisplayTime();
+
+        if (!canDeflect)
+        {
+            if (deflectCD > 0)
+            {
+                deflectCD -= Time.deltaTime;
+            }
+            else
+            {
+                canDeflect = true;
+                deflectCD = 0;
+                defBtn.interactable = true;
+            }
+        }
+
         // Get Poisition of object relative to camera's viewport Range is bw 0 and 1
         // 0 means extreme left on x axis, 1 means extreme right on x-axis
         // 0 means bottom on y axis, 1 means top on y-axis
