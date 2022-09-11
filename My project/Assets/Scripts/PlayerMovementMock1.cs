@@ -104,7 +104,7 @@ public class PlayerMovementMock1 : MonoBehaviour
     // Update is called once per frame
     // TO DO: Create a better mechanic after finalizing mechanics,
     // Current impl only works for slow character speeds
-    void Update()
+    void FixedUpdate()
     {
 
         DisplayTime();
