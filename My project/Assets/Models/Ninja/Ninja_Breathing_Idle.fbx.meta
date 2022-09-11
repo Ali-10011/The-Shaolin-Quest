@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: de5c50966bb71814ba2405e371ec67f5
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Ninja_Breathing_Idle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Camera
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -7.3588915, y: 4.958309, z: 6.925791}
+      rotation: {x: 0.09062851, y: 0.89379627, z: -0.20997299, w: 0.3857799}
+      scale: {x: 100, y: 100.00001, z: 99.99999}
+    - name: Ninja_T01:Media_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Mu?equera_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Saco
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Cinturon
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Pie_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Media_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Pie_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Ojota_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Pantalon_02
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Mano_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Protector_Mano_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Mano_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Protector_Mano_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Casco
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Paniuelo
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Cara
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Ojo_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Ojo_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Mu?equera_DE
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Ojota_IZ
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Hips
+      parentName: Ninja_Breathing_Idle(Clone)
+      position: {x: -0.0000000011641532, y: 0.14747593, z: -0.0012561165}
+      rotation: {x: 0.0000000014248087, y: 1.8189888e-10, z: 5.513813e-10, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Ninja_T01:LeftUpLeg
+      parentName: Ninja_T01:Hips
+      position: {x: -0.057393976, y: -0.010197706, z: -0.000017554163}
+      rotation: {x: -1.8021469e-10, y: -0.000074254065, z: 1, w: -0.000000022731697}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1}
+    - name: Ninja_T01:LeftLeg
+      parentName: Ninja_T01:LeftUpLeg
+      position: {x: -0, y: 0.053101134, z: 1.404421e-13}
+      rotation: {x: -0.011407699, y: -0.0014411525, z: 0.12674949, w: 0.99186814}
+      scale: {x: 1.0000006, y: 1.0000006, z: 1.0000006}
+    - name: Ninja_T01:LeftFoot
+      parentName: Ninja_T01:LeftLeg
+      position: {x: 6.009879e-11, y: 0.05678453, z: -8.555275e-12}
+      rotation: {x: 0.45378706, y: 0.016994486, z: 0.050943624, w: 0.8894904}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1.0000001}
+    - name: Ninja_T01:LeftToeBase
+      parentName: Ninja_T01:LeftFoot
+      position: {x: 1.432523e-10, y: 0.044750962, z: 0.0000000015923569}
+      rotation: {x: 0.2839368, y: -0.21037963, z: 0.06400453, w: 0.9332865}
+      scale: {x: 1, y: 1.0000004, z: 1}
+    - name: Ninja_T01:LeftToe_End
+      parentName: Ninja_T01:LeftToeBase
+      position: {x: 8.037229e-11, y: 0.01802945, z: -4.960317e-12}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Spine
+      parentName: Ninja_T01:Hips
+      position: {x: -0, y: 0.018355874, z: -0.000009778484}
+      rotation: {x: -0.00026636053, y: 1.4085955e-13, z: -5.286439e-10, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Ninja_T01:Spine1
+      parentName: Ninja_T01:Spine
+      position: {x: -0, y: 0.021415178, z: 1.2719396e-12}
+      rotation: {x: 7.2759565e-10, y: 0.0000000027293805, z: -0.000000001681111, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Spine2
+      parentName: Ninja_T01:Spine1
+      position: {x: -0, y: 0.024474492, z: 9.0747546e-14}
+      rotation: {x: -0.0000000028812788, y: -0.00000000582165, z: 0.000000001656726,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:LeftShoulder
+      parentName: Ninja_T01:Spine2
+      position: {x: -0.018834144, y: 0.023444638, z: -0.00021603258}
+      rotation: {x: 0.54624724, y: -0.44768578, z: 0.55254734, w: 0.4425867}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Ninja_T01:LeftArm
+      parentName: Ninja_T01:LeftShoulder
+      position: {x: 1.5341096e-11, y: 0.038528424, z: 1.03583024e-10}
+      rotation: {x: -0.081371896, y: 0.0009432732, z: -0.011552273, w: 0.9966164}
+      scale: {x: 1.0000011, y: 1.0000015, z: 1.0000008}
+    - name: Ninja_T01:LeftForeArm
+      parentName: Ninja_T01:LeftArm
+      position: {x: 1.2625226e-11, y: 0.04753636, z: -6.2324014e-11}
+      rotation: {x: -0.02181443, y: -0.000052528736, z: 0.0024076435, w: 0.99975914}
+      scale: {x: 0.99999994, y: 0.9999991, z: 0.9999997}
+    - name: Ninja_T01:LeftHand
+      parentName: Ninja_T01:LeftForeArm
+      position: {x: 1.4199666e-11, y: 0.04191696, z: 2.2234658e-12}
+      rotation: {x: 0.014163682, y: 0.005730757, z: -0.021023825, w: -0.9996623}
+      scale: {x: 1.0000006, y: 1.0000007, z: 1.000001}
+    - name: Ninja_T01:LeftHandIndex1
+      parentName: Ninja_T01:LeftHand
+      position: {x: 0.011916888, y: 0.020745393, z: -0.00021474791}
+      rotation: {x: -0.0108462125, y: 0.0011513302, z: 0.10554645, w: -0.99435455}
+      scale: {x: 1.0000004, y: 1.000001, z: 1.000001}
+    - name: Ninja_T01:LeftHandIndex2
+      parentName: Ninja_T01:LeftHandIndex1
+      position: {x: 0.000009260976, y: 0.011712228, z: -1.1262457e-12}
+      rotation: {x: 0.003124137, y: 0.000000032130625, z: 1.6189004e-10, w: 0.9999951}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Ninja_T01:LeftHandIndex3
+      parentName: Ninja_T01:LeftHandIndex2
+      position: {x: 0.000008267304, y: 0.010828632, z: 9.837464e-14}
+      rotation: {x: -0.039257403, y: 0.00003605687, z: -0.0008319928, w: 0.99922884}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+    - name: Ninja_T01:LeftHandIndex4
+      parentName: Ninja_T01:LeftHandIndex3
+      position: {x: -0.00001752758, y: 0.0077491435, z: 1.3396491e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:LeftHandThumb1
+      parentName: Ninja_T01:LeftHand
+      position: {x: 0.008124402, y: 0.005798617, z: 0.0011709317}
+      rotation: {x: -0.053754885, y: 0.023745637, z: 0.40337294, w: -0.9131467}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000006}
+    - name: Ninja_T01:LeftHandThumb2
+      parentName: Ninja_T01:LeftHandThumb1
+      position: {x: 0.00094791, y: 0.007983863, z: -7.49483e-11}
+      rotation: {x: 0.03171464, y: 0.004237746, z: -0.053677816, w: 0.9980456}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000004}
+    - name: Ninja_T01:LeftHandThumb3
+      parentName: Ninja_T01:LeftHandThumb2
+      position: {x: -0.00029973144, y: 0.011477935, z: 8.895055e-10}
+      rotation: {x: -0.038596205, y: 0.0004763382, z: -0.003927529, w: 0.9992471}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999997}
+    - name: Ninja_T01:LeftHandThumb4
+      parentName: Ninja_T01:LeftHandThumb3
+      position: {x: -0.0006481779, y: 0.010443855, z: -1.7999542e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:LeftHandMiddle1
+      parentName: Ninja_T01:LeftHand
+      position: {x: 0.0045185005, y: 0.020867553, z: 0.0002453482}
+      rotation: {x: 0.007869744, y: -0.00020712656, z: 0.026305446, w: -0.99962294}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000006}
+    - name: Ninja_T01:LeftHandMiddle2
+      parentName: Ninja_T01:LeftHandMiddle1
+      position: {x: -0.000004003604, y: 0.012752028, z: 2.8989859e-11}
+      rotation: {x: 0.01752293, y: 0.0000000030704543, z: 0.000000069502455, w: 0.9998465}
+      scale: {x: 1.0000006, y: 1.0000012, z: 1.000001}
+    - name: Ninja_T01:LeftHandMiddle3
+      parentName: Ninja_T01:LeftHandMiddle2
+      position: {x: 0.000001408418, y: 0.012670103, z: -6.5568883e-13}
+      rotation: {x: 0.006515064, y: -0.000000010803994, z: -0.0000000018422329, w: 0.9999788}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: Ninja_T01:LeftHandMiddle4
+      parentName: Ninja_T01:LeftHandMiddle3
+      position: {x: 0.0000025951178, y: 0.009971414, z: -4.583782e-12}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:LeftHandRing1
+      parentName: Ninja_T01:LeftHand
+      position: {x: -0.0046188775, y: 0.022724003, z: -0.00015876874}
+      rotation: {x: 0.011242807, y: 0.00060245744, z: -0.025327828, w: 0.99961585}
+      scale: {x: 1.000001, y: 1.0000006, z: 1.0000015}
+    - name: Ninja_T01:LeftHandRing2
+      parentName: Ninja_T01:LeftHandRing1
+      position: {x: 0.00000059607333, y: 0.011562476, z: 8.692069e-13}
+      rotation: {x: -0.004567178, y: -0.000000040017767, z: 0.0000000457311, w: 0.9999896}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999946}
+    - name: Ninja_T01:LeftHandRing3
+      parentName: Ninja_T01:LeftHandRing2
+      position: {x: -0.00000045095896, y: 0.010439547, z: -1.3721255e-11}
+      rotation: {x: 0.0011576279, y: 0.00000003314776, z: -0.000000058985165, w: 0.9999994}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
+    - name: Ninja_T01:LeftHandRing4
+      parentName: Ninja_T01:LeftHandRing3
+      position: {x: -0.00000014507862, y: 0.007975198, z: 5.4132697e-13}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:LeftHandPinky1
+      parentName: Ninja_T01:LeftHand
+      position: {x: -0.01181651, y: 0.019918833, z: -0.00026714356}
+      rotation: {x: -0.011657508, y: -0.004525567, z: 0.030664453, w: -0.9994516}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000006}
+    - name: Ninja_T01:LeftHandPinky2
+      parentName: Ninja_T01:LeftHandPinky1
+      position: {x: 0.0000015388838, y: 0.011559238, z: 8.5879746e-13}
+      rotation: {x: 0.014574818, y: -0.0000000032596286, z: -0.00000001722219, w: -0.9998938}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: Ninja_T01:LeftHandPinky3
+      parentName: Ninja_T01:LeftHandPinky2
+      position: {x: -0.000000060887956, y: 0.009213867, z: -1.9661072e-12}
+      rotation: {x: -0.024898876, y: 0.000000037403083, z: -0.000000012490485, w: 0.99969}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Ninja_T01:LeftHandPinky4
+      parentName: Ninja_T01:LeftHandPinky3
+      position: {x: -0.0000014793214, y: 0.006785487, z: 1.473488e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:Neck
+      parentName: Ninja_T01:Spine2
+      position: {x: -0, y: 0.027533803, z: 5.6318175e-12}
+      rotation: {x: 0.00026636195, y: 3.6326497e-13, z: -0.000000001364242, w: 1}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1}
+    - name: Ninja_T01:Head
+      parentName: Ninja_T01:Neck
+      position: {x: -0, y: 0.012944775, z: -0.00006144202}
+      rotation: {x: -0.0000000036379784, y: 0.000000005820765, z: 0.000000003910828,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Ninja_T01:HeadTop_End
+      parentName: Ninja_T01:Head
+      position: {x: -0, y: 0.118605554, z: -0.0005629582}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightShoulder
+      parentName: Ninja_T01:Spine2
+      position: {x: 0.018834144, y: 0.023444409, z: 0.00021167571}
+      rotation: {x: 0.5524873, y: 0.4426331, z: -0.5463134, w: 0.44763324}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+    - name: Ninja_T01:RightArm
+      parentName: Ninja_T01:RightShoulder
+      position: {x: -3.1709834e-12, y: 0.038528424, z: 1.035324e-10}
+      rotation: {x: 0.08138738, y: -0.0008833407, z: 0.010817229, w: -0.9966235}
+      scale: {x: 1.0000013, y: 1.0000018, z: 1.0000021}
+    - name: Ninja_T01:RightForeArm
+      parentName: Ninja_T01:RightArm
+      position: {x: 1.0652804e-11, y: 0.047535706, z: -4.8979095e-11}
+      rotation: {x: 0.021824924, y: 0.00013746605, z: -0.006298261, w: -0.99974203}
+      scale: {x: 1.0000013, y: 1.0000011, z: 1.0000006}
+    - name: Ninja_T01:RightHand
+      parentName: Ninja_T01:RightForeArm
+      position: {x: -1.9132096e-12, y: 0.04191624, z: -2.0570211e-13}
+      rotation: {x: -0.005923465, y: 0.0071092388, z: -0.0291726, w: 0.9995315}
+      scale: {x: 1.0000001, y: 1, z: 1.0000005}
+    - name: Ninja_T01:RightHandMiddle1
+      parentName: Ninja_T01:RightHand
+      position: {x: -0.004646995, y: 0.020813651, z: 0.00043617687}
+      rotation: {x: -0.032528218, y: -0.0014666652, z: 0.045017257, w: 0.99845546}
+      scale: {x: 1.0000002, y: 0.9999998, z: 0.9999998}
+    - name: Ninja_T01:RightHandMiddle2
+      parentName: Ninja_T01:RightHandMiddle1
+      position: {x: 0.000011067889, y: 0.013289307, z: 1.9400695e-11}
+      rotation: {x: 0.027343541, y: 0.0000000069849184, z: -0.000000038677168, w: 0.99962616}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: Ninja_T01:RightHandMiddle3
+      parentName: Ninja_T01:RightHandMiddle2
+      position: {x: 0.0000017535286, y: 0.012400744, z: 2.417206e-11}
+      rotation: {x: 0.04001484, y: -0.000018789, z: -0.00032349105, w: 0.9991991}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000005}
+    - name: Ninja_T01:RightHandMiddle4
+      parentName: Ninja_T01:RightHandMiddle3
+      position: {x: -0.000012821365, y: 0.00977579, z: -4.8021035e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightHandPinky1
+      parentName: Ninja_T01:RightHand
+      position: {x: 0.011775034, y: 0.020713877, z: -0.00015638603}
+      rotation: {x: 0.00818805, y: -0.0014197519, z: 0.03346312, w: 0.99940544}
+      scale: {x: 0.9999997, y: 0.99999994, z: 0.9999998}
+    - name: Ninja_T01:RightHandPinky2
+      parentName: Ninja_T01:RightHandPinky1
+      position: {x: -0.0000014486781, y: 0.011624541, z: -1.39437255e-11}
+      rotation: {x: -0.007641604, y: -0.000000016589182, z: 0.00000007182006, w: 0.9999708}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+    - name: Ninja_T01:RightHandPinky3
+      parentName: Ninja_T01:RightHandPinky2
+      position: {x: 0.0000011035505, y: 0.008912277, z: -3.8147263e-12}
+      rotation: {x: 0.0018543266, y: 0.000000018658092, z: -0.00000013195059, w: 0.99999833}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightHandPinky4
+      parentName: Ninja_T01:RightHandPinky3
+      position: {x: 0.00000034523853, y: 0.00646369, z: 4.9828583e-12}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightHandIndex1
+      parentName: Ninja_T01:RightHand
+      position: {x: -0.011353855, y: 0.019498242, z: 0.00027449208}
+      rotation: {x: -0.040863253, y: -0.0058544837, z: 0.14170116, w: 0.98904836}
+      scale: {x: 1.0000002, y: 0.99999994, z: 0.99999994}
+    - name: Ninja_T01:RightHandIndex2
+      parentName: Ninja_T01:RightHandIndex1
+      position: {x: 0.000005408959, y: 0.012285718, z: 3.2373108e-11}
+      rotation: {x: 0.04139692, y: 0.00000047357736, z: -0.000018424707, w: 0.9991428}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: Ninja_T01:RightHandIndex3
+      parentName: Ninja_T01:RightHandIndex2
+      position: {x: -0.0000009637566, y: 0.011038628, z: 1.1883827e-12}
+      rotation: {x: 0.031210128, y: 0.000000016296786, z: -0.00000002491729, w: 0.9995129}
+      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+    - name: Ninja_T01:RightHandIndex4
+      parentName: Ninja_T01:RightHandIndex3
+      position: {x: -0.000004444722, y: 0.008632468, z: -4.8520014e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightHandRing1
+      parentName: Ninja_T01:RightHand
+      position: {x: 0.004225817, y: 0.02165006, z: 0.00043225914}
+      rotation: {x: -0.019837862, y: 0.0015041021, z: 0.034833238, w: 0.99919516}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.9999998}
+    - name: Ninja_T01:RightHandRing2
+      parentName: Ninja_T01:RightHandRing1
+      position: {x: 0.000009742579, y: 0.011894419, z: -1.4210905e-10}
+      rotation: {x: 0.041913893, y: 0.000000043568424, z: -0.000000056037024, w: 0.99912125}
+      scale: {x: 1.0000004, y: 1.0000008, z: 1.0000006}
+    - name: Ninja_T01:RightHandRing3
+      parentName: Ninja_T01:RightHandRing2
+      position: {x: -0.0000027911806, y: 0.010812602, z: 5.520206e-13}
+      rotation: {x: -0.020299995, y: -0.000000032847048, z: 0.000000027615267, w: -0.99979395}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Ninja_T01:RightHandRing4
+      parentName: Ninja_T01:RightHandRing3
+      position: {x: -0.000006951215, y: 0.008579213, z: -3.2322554e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightHandThumb1
+      parentName: Ninja_T01:RightHand
+      position: {x: -0.008113593, y: 0.0058361706, z: 0.0007657289}
+      rotation: {x: 0.03506144, y: 0.015730165, z: 0.40903604, w: 0.9117087}
+      scale: {x: 0.99999946, y: 1, z: 0.9999997}
+    - name: Ninja_T01:RightHandThumb2
+      parentName: Ninja_T01:RightHandThumb1
+      position: {x: -0.0008282303, y: 0.007976199, z: -2.370335e-11}
+      rotation: {x: 0.03438056, y: -0.0066126697, z: 0.037358202, w: 0.9986885}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
+    - name: Ninja_T01:RightHandThumb3
+      parentName: Ninja_T01:RightHandThumb2
+      position: {x: -0.00008367066, y: 0.011317064, z: 8.8945594e-11}
+      rotation: {x: -0.03249732, y: -0.0013823928, z: 0.024337817, w: 0.99917454}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
+    - name: Ninja_T01:RightHandThumb4
+      parentName: Ninja_T01:RightHandThumb3
+      position: {x: 0.0009118997, y: 0.010508739, z: 1.6727948e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ninja_T01:RightUpLeg
+      parentName: Ninja_T01:Hips
+      position: {x: 0.057393976, y: -0.010197706, z: 0.0000053465365}
+      rotation: {x: -0.000000011823432, y: -0.0000023734174, z: 1, w: 5.513551e-10}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1}
+    - name: Ninja_T01:RightLeg
+      parentName: Ninja_T01:RightUpLeg
+      position: {x: -0, y: 0.053101134, z: 1.1890957e-14}
+      rotation: {x: -0.010150106, y: 0.0010595907, z: -0.12533581, w: 0.9920619}
+      scale: {x: 1.0000014, y: 1.0000023, z: 0.9999998}
+    - name: Ninja_T01:RightFoot
+      parentName: Ninja_T01:RightLeg
+      position: {x: 5.6263005e-10, y: 0.056791667, z: 4.088374e-11}
+      rotation: {x: 0.44914156, y: -0.013133111, z: -0.054196402, w: 0.8917186}
+      scale: {x: 0.99999946, y: 0.99999905, z: 0.9999996}
+    - name: Ninja_T01:RightToeBase
+      parentName: Ninja_T01:RightFoot
+      position: {x: 9.296984e-10, y: 0.044471793, z: -1.0028122e-10}
+      rotation: {x: 0.28613153, y: 0.20753181, z: -0.063626565, w: 0.93327975}
+      scale: {x: 1.0000007, y: 1.0000035, z: 0.9999974}
+    - name: Ninja_T01:RightToe_End
+      parentName: Ninja_T01:RightToeBase
+      position: {x: 1.12295284e-10, y: 0.018066384, z: -3.8507405e-13}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

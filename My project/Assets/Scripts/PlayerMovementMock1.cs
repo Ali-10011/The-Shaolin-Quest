@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMovementMock1 : MonoBehaviour
 {
@@ -39,12 +40,16 @@ public class PlayerMovementMock1 : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             // A random position in viewport
-            Vector3 viewPortPos = new Vector3(Random.Range(0.1f, 0.9f), Random.Range(0.6f, 0.8f), viewPos.z + 43);
+            Vector3 viewPortPos = new Vector3(Random.Range(0.3f, 0.7f), Random.Range(0.6f, 0.8f), viewPos.z + 43);
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPortPos);
-            Vector3 collisionCircle = new Vector3(worldPos.x, worldPos.y+5.6f, worldPos.z);
-            if (!Physics.CheckSphere(worldPos, 12))
+
+            if (!Physics.CheckSphere(worldPos, 11))
             {
                 GameObject enemy = Instantiate(enemyPrefab, worldPos, transform.rotation);
+                Transform smoke = enemy.transform.Find("smoke");
+                smoke.transform.rotation = new Quaternion(0.0f, cam.transform.rotation.y, 0.0f, cam.transform.rotation.w);
+                smoke.gameObject.SetActive(true);
+                enemy.gameObject.SetActive(true);
                 return true;
             }
         }   

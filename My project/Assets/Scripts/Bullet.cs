@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         else if (!other.collider.isTrigger && !other.collider.tag.Contains("Bullet"))
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
+            other.transform.GetComponentInChildren<Enemy>().animator.Play("Base Layer.Hit", -1);
         }    
     }
     public void Shoot(Vector3 target)
