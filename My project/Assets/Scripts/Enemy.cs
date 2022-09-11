@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int waitingTime = 5;
     [SerializeField] int MaxMissedBullets = 3;
     public int missedBullets = 0;
+    public Animator animator;
 
     private void Awake() 
     {
@@ -15,9 +18,14 @@ public class Enemy : MonoBehaviour
         player = player.transform.Find("panda").gameObject;
     }
 
-    void Shoot()
+    public void OnHit()
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.Find("shoot").position, transform.rotation);
+        Destroy(transform.parent.gameObject);
+    }
+
+    public void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.parent.Find("shoot").position, transform.rotation);
         bullet.transform.SetParent(transform);
         Bullet _bltScript= bullet.GetComponent<Bullet>();
         _bltScript._enemy = this;
@@ -45,7 +53,7 @@ public class Enemy : MonoBehaviour
 
                 if (timer > waitingTime)
                 {
-                    Shoot();
+                    animator.Play("Base Layer.Throw", -1);
                     timer = 0;
                 }
             }
@@ -56,7 +64,7 @@ public class Enemy : MonoBehaviour
 
                 if (timer > waitingTime)
                 {
-                    Shoot();
+                    animator.Play("Base Layer.Throw", -1);
                     timer = 0;
                 }
         }
