@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private GameObject bulletPrefab = null;
+    [SerializeField] private GameObject smoke = null;
     float timer;
     [SerializeField] int waitingTime = 5;
     [SerializeField] int MaxMissedBullets = 3;
@@ -20,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     public void OnHit()
     {
+        GameObject smok = Instantiate(smoke);
+        smok.transform.parent = null;
+        smok.transform.position = transform.position;
+        smok.GetComponent<ParticleSystem>().Play();
         Destroy(transform.parent.gameObject);
     }
 
@@ -38,7 +43,7 @@ public class Enemy : MonoBehaviour
     {
         if (missedBullets > MaxMissedBullets)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
         try 
         {
