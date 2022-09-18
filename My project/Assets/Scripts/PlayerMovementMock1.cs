@@ -3,38 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
+using Cinemachine.Utility;
 
 public class PlayerMovementMock1 : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
     [SerializeField] GameObject enemyPrefab;
+    Rigidbody rigidbody;
     private Vector3 viewPos;
-    public FixedJoystick FixedJoystick;
+    FixedJoystick FixedJoystick;
     private Camera cam;
-    SphereCollider deflectArea;
-
+    GameObject playScreen;
+    
     bool canDeflect;
     [SerializeField] float deflectCD;
-    [SerializeField] Button defBtn;
+    [SerializeField] float currDeflectCD;
+    Button defBtn;
 
-    [SerializeField] TextMeshProUGUI timeTxt;
+    TextMeshProUGUI timeTxt;
+    TextMeshProUGUI scoreTxt;
     [SerializeField] float timeToDisplay;
 
 
     public static List<GameObject> bulletsList = new List<GameObject>();
     public static List<GameObject> bulletsToDelete = new List<GameObject>();
-    [SerializeField] float spawnAfter = 5f;
+    [SerializeField] float spawnAfter;
+    [SerializeField] float maxEnemies;
 
+    public float totalEnemies = 0;
+    public float hitEnemies = 0;
+    public float missedEnemies = 0;
+
+    public float score = 0;
+
+    
     // Start is called before the first frame update
     private void Awake() 
     {
         cam = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
+        playScreen = GameObject.Find("Canvas").transform.Find("PlayScreen").gameObject;
+
+        timeTxt = playScreen.transform.Find("TimeTxt").GetComponent<TextMeshProUGUI>();
+        scoreTxt = playScreen.transform.Find("ScoreTxt").GetComponent<TextMeshProUGUI>();
+
+        FixedJoystick = playScreen.transform.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+
+        defBtn = playScreen.transform.Find("Deflect Btn").GetComponent<Button>();
+        defBtn.onClick.AddListener(Deflect);
+
         viewPos = cam.WorldToViewportPoint(transform.position);
-        deflectArea = GetComponent<SphereCollider>();
+        maxEnemies = PlayerPrefs.GetInt("currentLevel");
+        spawnAfter = 7 - PlayerPrefs.GetInt("currentLevel");
         StartCoroutine(AutoSpawnEnemies());
     }
 
+ 
     private bool Spawn()
     {
         for (int i = 0; i < 10; i++)
@@ -43,13 +67,14 @@ public class PlayerMovementMock1 : MonoBehaviour
             Vector3 viewPortPos = new Vector3(Random.Range(0.3f, 0.7f), Random.Range(0.6f, 0.8f), viewPos.z + 43);
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPortPos);
 
-            if (!Physics.CheckSphere(worldPos, 11))
+            if (!Physics.CheckSphere(worldPos, 11) && totalEnemies < maxEnemies)
             {
                 GameObject enemy = Instantiate(enemyPrefab, worldPos, transform.rotation);
                 Transform smoke = enemy.transform.Find("smoke");
                 smoke.transform.rotation = new Quaternion(0.0f, cam.transform.rotation.y, 0.0f, cam.transform.rotation.w);
                 smoke.gameObject.SetActive(true);
                 enemy.gameObject.SetActive(true);
+                totalEnemies++;
                 return true;
             }
         }   
@@ -71,7 +96,7 @@ public class PlayerMovementMock1 : MonoBehaviour
 
         canDeflect = false;
         defBtn.interactable = false;
-        deflectCD = 10;
+        currDeflectCD = deflectCD;
 
         Collider[] bullets = Physics.OverlapSphere(transform.position, 20f);
 
@@ -79,6 +104,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         {
             if (bullet.tag.Equals("Bullet"))
             {
+                print(bullet);
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
                 bullet.transform.Find("kunai1").Rotate(180, 0, 0);
                 bullet.transform.Find("kunai2").Rotate(180, 0, 0);
@@ -90,35 +116,77 @@ public class PlayerMovementMock1 : MonoBehaviour
 
     }
 
+    void DisplayScore()
+    {
+        score = (hitEnemies / totalEnemies) * 100;
+        score -= (missedEnemies * 5);
+        scoreTxt.text = "Score: " + (int) score;
+    }
+
     void DisplayTime()
     {
         if (timeToDisplay < 1)
             return;
-
+ 
         timeToDisplay -= Time.deltaTime;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         timeTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    // Update is called once per frame
-    // TO DO: Create a better mechanic after finalizing mechanics,
-    // Current impl only works for slow character speeds
-    void Update()
+    void EndLevel()
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        UI uiScript = canvas.GetComponent<UI>();
 
+        Transform resultScreen = canvas.transform.Find("Score").transform.Find("ScorePanel");
+
+        if (score >= 25)
+        {
+            int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevels");
+            print("Ubl " + unlockedLevel);
+            PlayerPrefs.SetInt("UnlockedLevels", ++unlockedLevel);
+        }
+
+        resultScreen.Find("NextLvl").gameObject.SetActive(score >= 25);
+        resultScreen.Find("leftStar").gameObject.SetActive(score >= 25);
+        resultScreen.Find("middleStar").gameObject.SetActive(score >= 50);
+        resultScreen.Find("rightStar").gameObject.SetActive(score == 100);
+
+        uiScript.OnClickMenuBtn(4);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        Destroy(gameObject);
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {  
         DisplayTime();
+        DisplayScore();
+
+        if (timeToDisplay <= 0 || missedEnemies + hitEnemies == maxEnemies)
+        {
+            EndLevel();
+        }
 
         if (!canDeflect)
         {
-            if (deflectCD > 0)
+            if (currDeflectCD > 0)
             {
-                deflectCD -= Time.deltaTime;
+                currDeflectCD -= Time.deltaTime;
             }
             else
             {
                 canDeflect = true;
-                deflectCD = 0;
+                currDeflectCD = 0;
                 defBtn.interactable = true;
             }
         }
@@ -137,7 +205,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         // Calculate final position in advance before movement
         Vector3 newPos = transform.position + transform.TransformDirection(new Vector3(FixedJoystick.Horizontal * PlayerSpeed, y: FixedJoystick.Vertical * PlayerSpeed, z: 0));
         newPos = cam.WorldToViewportPoint(newPos);
-
+        
         // If final position is inside movement, move, otherwise do not
         if ((0.07f < newPos.x && newPos.x < 0.93f) && (0.07f < newPos.y && newPos.y < 0.53f))
         {
