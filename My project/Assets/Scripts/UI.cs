@@ -49,6 +49,12 @@ public class UI : MonoBehaviour
         OnClickMenuBtn(1);
     }
 
+    public void OnClickLvlScreen()
+    {
+        DestroyLevel();
+        OnClickMenuBtn(1);
+    }
+
     public void Resume()
     {
         Time.timeScale = 1;
@@ -59,9 +65,8 @@ public class UI : MonoBehaviour
     {
         PlayerPrefs.SetInt("currentLevel", btn.name[btn.name.Length - 1] - '0');
         OnClickMenuBtn(2);
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(new Vector3(0, -14.5f, 20.6f));
         GameObject _player = Instantiate(player,null);
-        _player.transform.position = viewportPos;
+        _player.transform.position = new Vector3(0, -16f, 30.6f);
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
     }
 

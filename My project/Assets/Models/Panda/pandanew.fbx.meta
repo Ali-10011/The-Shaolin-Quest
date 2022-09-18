@@ -39,7 +39,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
@@ -78,8 +78,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
-  importAnimation: 1
+  referencedClips:
+  - 8838a3aae81a2bd40b1b2a6d1b23fef5
+  - b6c86b7ca0869a6498a1d5898aea67c8
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

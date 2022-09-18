@@ -9,7 +9,9 @@ public class PlayerMovementMock1 : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
     [SerializeField] GameObject enemyPrefab;
-    Rigidbody rigidbody;
+    [SerializeField] GameObject deflectPrefab;
+    public Animator playerAnim;
+
     private Vector3 viewPos;
     FixedJoystick FixedJoystick;
     private Camera cam;
@@ -30,10 +32,10 @@ public class PlayerMovementMock1 : MonoBehaviour
     [SerializeField] float spawnAfter;
     [SerializeField] float maxEnemies;
 
-    public float totalEnemies = 0;
+    public float totalEnemies = -1;
     public float hitEnemies = 0;
     public float missedEnemies = 0;
-
+    public int gotHit = 0;
     public float score = 0;
 
     
@@ -41,7 +43,8 @@ public class PlayerMovementMock1 : MonoBehaviour
     private void Awake() 
     {
         cam = Camera.main;
-        rigidbody = GetComponent<Rigidbody>();
+
+        playerAnim = transform.Find("panda").GetComponent<Animator>();
         playScreen = GameObject.Find("Canvas").transform.Find("PlayScreen").gameObject;
 
         timeTxt = playScreen.transform.Find("TimeTxt").GetComponent<TextMeshProUGUI>();
@@ -53,7 +56,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         defBtn.onClick.AddListener(Deflect);
 
         viewPos = cam.WorldToViewportPoint(transform.position);
-        maxEnemies = PlayerPrefs.GetInt("currentLevel");
+        maxEnemies = PlayerPrefs.GetInt("currentLevel") + 2;
         spawnAfter = 7 - PlayerPrefs.GetInt("currentLevel");
         StartCoroutine(AutoSpawnEnemies());
     }
@@ -64,17 +67,22 @@ public class PlayerMovementMock1 : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             // A random position in viewport
-            Vector3 viewPortPos = new Vector3(Random.Range(0.3f, 0.7f), Random.Range(0.6f, 0.8f), viewPos.z + 43);
+            Vector3 viewPortPos = new Vector3(Random.Range(0.3f, 0.7f), Random.Range(0.6f, 0.8f), 73);
             Vector3 worldPos = cam.ViewportToWorldPoint(viewPortPos);
 
             if (!Physics.CheckSphere(worldPos, 11) && totalEnemies < maxEnemies)
             {
-                GameObject enemy = Instantiate(enemyPrefab, worldPos, transform.rotation);
+                GameObject enemy = Instantiate(enemyPrefab, worldPos, Quaternion.identity);
                 Transform smoke = enemy.transform.Find("smoke");
                 smoke.transform.rotation = new Quaternion(0.0f, cam.transform.rotation.y, 0.0f, cam.transform.rotation.w);
                 smoke.gameObject.SetActive(true);
                 enemy.gameObject.SetActive(true);
                 totalEnemies++;
+                if (totalEnemies == 0)
+                {
+                    Destroy(enemy);
+                    totalEnemies--;
+                }
                 return true;
             }
         }   
@@ -94,6 +102,9 @@ public class PlayerMovementMock1 : MonoBehaviour
     {
         if (!canDeflect) return;
 
+        ParticleSystem defPart = Instantiate(deflectPrefab, transform).GetComponent<ParticleSystem>();
+        defPart.Play();
+
         canDeflect = false;
         defBtn.interactable = false;
         currDeflectCD = deflectCD;
@@ -104,7 +115,6 @@ public class PlayerMovementMock1 : MonoBehaviour
         {
             if (bullet.tag.Equals("Bullet"))
             {
-                print(bullet);
                 Rigidbody rb = bullet.GetComponent<Rigidbody>();
                 bullet.transform.Find("kunai1").Rotate(180, 0, 0);
                 bullet.transform.Find("kunai2").Rotate(180, 0, 0);
@@ -120,6 +130,9 @@ public class PlayerMovementMock1 : MonoBehaviour
     {
         score = (hitEnemies / totalEnemies) * 100;
         score -= (missedEnemies * 5);
+        score -= (gotHit * 5);
+        gotHit = 0;
+        score = Mathf.Clamp(score, 0, 100);
         scoreTxt.text = "Score: " + (int) score;
     }
 
@@ -174,7 +187,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         DisplayTime();
         DisplayScore();
 
-        if (timeToDisplay <= 0 || missedEnemies + hitEnemies == maxEnemies)
+        if (timeToDisplay < 1 || missedEnemies + hitEnemies == maxEnemies)
         {
             EndLevel();
         }
@@ -201,17 +214,31 @@ public class PlayerMovementMock1 : MonoBehaviour
         // Only move object when within the given bounds (viewport of the camera)
         // To prevent a part of object going out of viewport, a larger/smaller value is chosen
         // instead of 0 and 1.
-        float xMov = FixedJoystick.Horizontal * PlayerSpeed;
-        float yMov = FixedJoystick.Vertical * PlayerSpeed;
 
         // Calculate final position in advance before movement
-        Vector3 newPos = transform.position + transform.TransformDirection(new Vector3(FixedJoystick.Horizontal * PlayerSpeed, y: FixedJoystick.Vertical * PlayerSpeed, z: 0));
+        Vector3 newPos = transform.position + transform.TransformDirection(new Vector3(x: FixedJoystick.Horizontal * PlayerSpeed, y: 0, z: 0));
         newPos = cam.WorldToViewportPoint(newPos);
         
         // If final position is inside movement, move, otherwise do not
-        if ((0.07f < newPos.x && newPos.x < 0.93f) && (0.07f < newPos.y && newPos.y < 0.53f))
+        if ((0.07f < newPos.x && newPos.x < 0.93f))
         {
-            transform.Translate(translation: new Vector3(FixedJoystick.Horizontal*PlayerSpeed,y:FixedJoystick.Vertical*PlayerSpeed,z:0));
+            float mov = FixedJoystick.Horizontal * PlayerSpeed;
+            
+            if (mov < 0.0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+            }
+            else if (mov > 0.0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+
+            playerAnim.SetBool("isRunning", mov != 0);
+            transform.Translate(translation: new Vector3(x:mov, y:0, z:0), Space.World);
         }
     }
 }
