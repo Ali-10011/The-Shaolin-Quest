@@ -7,6 +7,8 @@ public class UI : MonoBehaviour
 {
     [SerializeField] GameObject[] Screens;
     [SerializeField] GameObject player;
+    [SerializeField] Sprite[] playScreenBG;
+    
     public static int itemNo = 0;
     Canvas canvas;
 
@@ -65,6 +67,7 @@ public class UI : MonoBehaviour
     {
         PlayerPrefs.SetInt("currentLevel", btn.name[btn.name.Length - 1] - '0');
         OnClickMenuBtn(2);
+        canvas.transform.Find("PlayScreen").GetComponent<Image>().sprite =  playScreenBG[Random.Range(0, playScreenBG.Length - 1)];
         GameObject _player = Instantiate(player,null);
         _player.transform.position = new Vector3(0, -16f, 30.6f);
         canvas.renderMode = RenderMode.ScreenSpaceCamera;

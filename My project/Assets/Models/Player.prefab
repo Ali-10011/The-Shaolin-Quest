@@ -573,6 +573,8 @@ MonoBehaviour:
   missedEnemies: 0
   gotHit: 0
   score: 0
+  failed: {fileID: 21300000, guid: e690adc793d5b8f40b8bec1cc84490ad, type: 3}
+  passed: {fileID: 21300000, guid: 677666c72d9964d40a0d0e8cd161920a, type: 3}
 --- !u!136 &5540231420002985684
 CapsuleCollider:
   m_ObjectHideFlags: 0
