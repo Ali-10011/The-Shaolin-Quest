@@ -131,7 +131,6 @@ public class PlayerMovementMock1 : MonoBehaviour
         score = (hitEnemies / totalEnemies) * 100;
         score -= (missedEnemies * 5);
         score -= (gotHit * 5);
-        gotHit = 0;
         score = Mathf.Clamp(score, 0, 100);
         scoreTxt.text = "Score: " + (int) score;
     }

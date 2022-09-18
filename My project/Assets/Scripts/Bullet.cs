@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         {
             PlayerMovementMock1 playerScript = other.gameObject.GetComponent<PlayerMovementMock1>();
             playerScript.playerAnim.Play("Base Layer.pandaHit", -1);
-            playerScript.gotHit -= 5;
+            playerScript.gotHit++;
             Destroy(gameObject);
         }
         else if (other.collider.tag.Contains("Bullet"))
@@ -36,6 +36,10 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             other.transform.GetComponentInChildren<Enemy>().animator.Play("Base Layer.Hit", -1);
         }    
+        else
+        {
+            print(other.gameObject.name);
+        }
     }
     public void Shoot(Vector3 target)
     {
