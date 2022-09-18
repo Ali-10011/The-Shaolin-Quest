@@ -5,18 +5,22 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
+    private PlayerMovementMock1 playerScript;
     [SerializeField] private GameObject bulletPrefab = null;
     [SerializeField] private GameObject smoke = null;
     float timer;
-    [SerializeField] int waitingTime = 5;
-    [SerializeField] int MaxMissedBullets = 3;
+    [SerializeField] int waitingTime;
+    [SerializeField] int MaxMissedBullets;
     public int missedBullets = 0;
     public Animator animator;
 
     private void Awake() 
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<PlayerMovementMock1>();
         player = player.transform.Find("panda").gameObject;
+        MaxMissedBullets = 7 - PlayerPrefs.GetInt("currentLevel");
+        waitingTime = 6 - PlayerPrefs.GetInt("currentLevel");
     }
 
     public void OnHit()
@@ -26,6 +30,7 @@ public class Enemy : MonoBehaviour
         smok.transform.position = transform.position;
         smok.GetComponent<ParticleSystem>().Play();
         Destroy(transform.parent.gameObject);
+        playerScript.hitEnemies++;
     }
 
     public void Shoot()
@@ -44,34 +49,15 @@ public class Enemy : MonoBehaviour
         if (missedBullets > MaxMissedBullets)
         {
             Destroy(transform.parent.gameObject);
+            playerScript.missedEnemies++;
         }
-        try 
-        {
-            PlayerMovementMock2 playerScript = player.GetComponent<PlayerMovementMock2>();
-            if (playerScript.isMoving)
-                {
-                    transform.LookAt(player.transform.position);
-                }
-            else 
-            {
-                timer += Time.deltaTime;
+        
+        timer += Time.deltaTime;
 
-                if (timer > waitingTime)
-                {
-                    animator.Play("Base Layer.Throw", -1);
-                    timer = 0;
-                }
-            }
-        }
-        catch
+        if (timer > waitingTime)
         {
-            timer += Time.deltaTime;
-
-                if (timer > waitingTime)
-                {
-                    animator.Play("Base Layer.Throw", -1);
-                    timer = 0;
-                }
+            animator.Play("Base Layer.Throw", -1);
+            timer = 0;
         }
     }
 }

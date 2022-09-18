@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody _rb;
     Camera _cam;
-    [SerializeField] int bulletSpeed;
+    [SerializeField] float bulletSpeed;
     public Enemy _enemy;
 
     // Start is called before the first frame update
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main;
-        bulletSpeed = 30;
+        bulletSpeed = 30 * (PlayerPrefs.GetInt("currentLevel") / 10);
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -23,7 +24,11 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (!other.collider.isTrigger && !other.collider.tag.Contains("Bullet"))
+        else if (other.collider.tag.Contains("Bullet"))
+        {
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), other.collider);
+        }
+        else if (!other.collider.isTrigger)
         {
             Destroy(gameObject);
             other.transform.GetComponentInChildren<Enemy>().animator.Play("Base Layer.Hit", -1);
