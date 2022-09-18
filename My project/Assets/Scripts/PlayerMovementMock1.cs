@@ -38,7 +38,7 @@ public class PlayerMovementMock1 : MonoBehaviour
     public int gotHit = 0;
     public float score = 0;
 
-    
+    [SerializeField] Sprite failed, passed;
     // Start is called before the first frame update
     private void Awake() 
     {
@@ -161,7 +161,7 @@ public class PlayerMovementMock1 : MonoBehaviour
             if ((unlockedLevel < 6) && (level == unlockedLevel))
             PlayerPrefs.SetInt("UnlockedLevels", ++unlockedLevel);
         }
-
+        resultScreen.Find("Status").gameObject.GetComponent<Image>().sprite = (score >= 25) ? passed : failed;
         resultScreen.Find("NextLvl").gameObject.SetActive(score >= 25);
         resultScreen.Find("leftStar").gameObject.SetActive(score >= 25);
         resultScreen.Find("middleStar").gameObject.SetActive(score >= 50);
@@ -210,6 +210,15 @@ public class PlayerMovementMock1 : MonoBehaviour
         // 0 means bottom on y axis, 1 means top on y-axis
         viewPos = cam.WorldToViewportPoint(transform.position);
 
+        if (viewPos.x < 0.07f)
+        {
+            transform.position += new Vector3(1f, 0f, 0f);
+        }
+        else if (viewPos.x > 0.93f)
+        {
+            transform.position -= new Vector3(1f, 0f, 0f);
+        }
+
         // Only move object when within the given bounds (viewport of the camera)
         // To prevent a part of object going out of viewport, a larger/smaller value is chosen
         // instead of 0 and 1.
@@ -219,7 +228,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         newPos = cam.WorldToViewportPoint(newPos);
         
         // If final position is inside movement, move, otherwise do not
-        if ((0.07f < newPos.x && newPos.x < 0.93f))
+        if ((0.07f < newPos.x && newPos.x < 0.83f))
         {
             float mov = FixedJoystick.Horizontal * PlayerSpeed;
             
@@ -239,5 +248,7 @@ public class PlayerMovementMock1 : MonoBehaviour
             playerAnim.SetBool("isRunning", mov != 0);
             transform.Translate(translation: new Vector3(x:mov, y:0, z:0), Space.World);
         }
+        
+
     }
 }

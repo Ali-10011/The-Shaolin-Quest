@@ -27,18 +27,14 @@ public class Bullet : MonoBehaviour
             playerScript.gotHit++;
             Destroy(gameObject);
         }
-        else if (other.collider.tag.Contains("Bullet"))
-        {
-            Physics.IgnoreCollision(GetComponent<BoxCollider>(), other.collider);
-        }
-        else if (other.collider.tag == "Enemy" && transform.tag == "DeflectedBullet")
+        else if (other.collider.transform.root.tag == "Enemy" && transform.tag == "DeflectedBullet")
         {
             Destroy(gameObject);
             other.transform.GetComponentInChildren<Enemy>().animator.Play("Base Layer.Hit", -1);
         }    
         else
         {
-            print(other.gameObject.name);
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), other.collider);
         }
     }
     public void Shoot(Vector3 target)
