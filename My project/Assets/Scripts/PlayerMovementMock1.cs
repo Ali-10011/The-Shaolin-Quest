@@ -143,8 +143,10 @@ public class PlayerMovementMock1 : MonoBehaviour
 
         if (score >= 25)
         {
+            int level = PlayerPrefs.GetInt("currentLevel");
             int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevels");
             print("Ubl " + unlockedLevel);
+            if ((unlockedLevel < 6) && (level == unlockedLevel))
             PlayerPrefs.SetInt("UnlockedLevels", ++unlockedLevel);
         }
 

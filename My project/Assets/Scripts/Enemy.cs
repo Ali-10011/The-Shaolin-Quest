@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         playerScript = player.GetComponent<PlayerMovementMock1>();
         player = player.transform.Find("panda").gameObject;
         MaxMissedBullets = 7 - PlayerPrefs.GetInt("currentLevel");
-        waitingTime = 6 - PlayerPrefs.GetInt("currentLevel");
+        waitingTime = 5;
     }
 
     public void OnHit()
@@ -46,6 +46,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (player == null)
+            GameObject.FindGameObjectWithTag("Player");
+
         if (missedBullets > MaxMissedBullets)
         {
             Destroy(transform.parent.gameObject);
