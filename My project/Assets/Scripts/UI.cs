@@ -41,12 +41,17 @@ public class UI : MonoBehaviour
             PlayerPrefs.SetInt("UnlockedLevels", 1);
         }
         int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels");
-
         Transform levelScreen = transform.Find("LevelSelect");
         for (int i = 2; i <= unlockedLevels; i++)
         { 
             levelScreen.Find("Level" + i).gameObject.GetComponent<Button>().interactable = true;
         }
+        OnClickMenuBtn(1);
+    }
+
+    public void OnClickLvlScreen()
+    {
+        DestroyLevel();
         OnClickMenuBtn(1);
     }
 
@@ -59,32 +64,41 @@ public class UI : MonoBehaviour
     public void OnClickLevel(Button btn)
     {
         PlayerPrefs.SetInt("currentLevel", btn.name[btn.name.Length - 1] - '0');
-        print(PlayerPrefs.GetInt("currentLevel"));
         OnClickMenuBtn(2);
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(new Vector3(0, -14.5f, 20.6f));
         GameObject _player = Instantiate(player,null);
-        _player.transform.position = viewportPos;
+        _player.transform.position = new Vector3(0, -16f, 30.6f);
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
+    }
+
+
+    public void OnClickNextLvl()
+    {
+        DestroyLevel();
+        int lvl = PlayerPrefs.GetInt("currentLevel");
+        lvl++;
+        Transform scorePanel = canvas.transform.Find("LevelSelect");
+        Button lvlButton = scorePanel.Find("Level" + lvl).GetComponent<Button>();
+        OnClickLevel(lvlButton);
     }
 
     public void Restart()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        DestroyLevel();
+        int lvl = PlayerPrefs.GetInt("currentLevel");
+        Transform scorePanel = canvas.transform.Find("LevelSelect");
+        Button lvlButton = scorePanel.Find("Level" + lvl).GetComponent<Button>();
+        OnClickLevel(lvlButton);
+        Time.timeScale = 1f;
+    }
 
+    void DestroyLevel()
+    {
+        DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
             Destroy(enemy);
         }
-
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
-
-        int lvl = PlayerPrefs.GetInt("currentLevel");
-        Transform scorePanel = canvas.transform.Find("LevelSelect");
-
-        Button lvlButton = scorePanel.Find("Level" + lvl).GetComponent<Button>();
-
-        OnClickLevel(lvlButton);
-        Time.timeScale = 1f;
     }
 
     public void Quit()

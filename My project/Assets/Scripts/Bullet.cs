@@ -20,15 +20,18 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.collider.transform.root.tag.Contains("Player"))
+        if (other.collider.tag.Contains("Player"))
         {
+            PlayerMovementMock1 playerScript = other.gameObject.GetComponent<PlayerMovementMock1>();
+            playerScript.playerAnim.Play("Base Layer.pandaHit", -1);
+            playerScript.gotHit -= 5;
             Destroy(gameObject);
         }
         else if (other.collider.tag.Contains("Bullet"))
         {
             Physics.IgnoreCollision(GetComponent<BoxCollider>(), other.collider);
         }
-        else if (!other.collider.isTrigger)
+        else if (other.collider.tag == "Enemy" && transform.tag == "DeflectedBullet")
         {
             Destroy(gameObject);
             other.transform.GetComponentInChildren<Enemy>().animator.Play("Base Layer.Hit", -1);
