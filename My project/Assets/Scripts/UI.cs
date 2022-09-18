@@ -10,6 +10,18 @@ public class UI : MonoBehaviour
     public static int itemNo = 0;
     Canvas canvas;
 
+
+    public float colDepth = 4f;
+    public float zPosition = 0f;
+    private Vector2 screenSize;
+
+    private Transform topCollider;
+    private Transform bottomCollider;
+    private Transform leftCollider;
+    private Transform rightCollider;
+    private Vector3 cameraPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +69,22 @@ public class UI : MonoBehaviour
 
     public void Restart()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+
+        int lvl = PlayerPrefs.GetInt("currentLevel");
+        Transform scorePanel = canvas.transform.Find("LevelSelect");
+
+        Button lvlButton = scorePanel.Find("Level" + lvl).GetComponent<Button>();
+
+        OnClickLevel(lvlButton);
+        Time.timeScale = 1f;
     }
 
     public void Quit()

@@ -248,6 +248,8 @@ MonoBehaviour:
   - {fileID: 1369123756}
   - {fileID: 1835533275}
   player: {fileID: 2436908214800504800, guid: 39df50d6b73849249b2262a08925f6e0, type: 3}
+  colDepth: 4
+  zPosition: 0
 --- !u!1 &157915753
 GameObject:
   m_ObjectHideFlags: 0

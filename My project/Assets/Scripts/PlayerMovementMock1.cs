@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine.Utility;
 
 public class PlayerMovementMock1 : MonoBehaviour
 {
     public float PlayerSpeed = 1f;
     [SerializeField] GameObject enemyPrefab;
+    Rigidbody rigidbody;
     private Vector3 viewPos;
     FixedJoystick FixedJoystick;
     private Camera cam;
@@ -34,10 +36,12 @@ public class PlayerMovementMock1 : MonoBehaviour
 
     public float score = 0;
 
+    
     // Start is called before the first frame update
     private void Awake() 
     {
         cam = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
         playScreen = GameObject.Find("Canvas").transform.Find("PlayScreen").gameObject;
 
         timeTxt = playScreen.transform.Find("TimeTxt").GetComponent<TextMeshProUGUI>();
@@ -54,6 +58,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         StartCoroutine(AutoSpawnEnemies());
     }
 
+ 
     private bool Spawn()
     {
         for (int i = 0; i < 10; i++)
@@ -200,7 +205,7 @@ public class PlayerMovementMock1 : MonoBehaviour
         // Calculate final position in advance before movement
         Vector3 newPos = transform.position + transform.TransformDirection(new Vector3(FixedJoystick.Horizontal * PlayerSpeed, y: FixedJoystick.Vertical * PlayerSpeed, z: 0));
         newPos = cam.WorldToViewportPoint(newPos);
-
+        
         // If final position is inside movement, move, otherwise do not
         if ((0.07f < newPos.x && newPos.x < 0.93f) && (0.07f < newPos.y && newPos.y < 0.53f))
         {

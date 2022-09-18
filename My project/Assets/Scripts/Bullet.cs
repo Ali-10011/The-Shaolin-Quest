@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main;
-        bulletSpeed = 30 * (PlayerPrefs.GetInt("currentLevel") / 10);
+        bulletSpeed = 30 * Convert.ToSingle("1." + PlayerPrefs.GetInt("currentLevel"));
     }
 
     private void OnCollisionEnter(Collision other) 
